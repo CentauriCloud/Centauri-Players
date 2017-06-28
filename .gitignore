@@ -1,0 +1,12 @@
+.idea
+*.iml
+Cloud/plugins
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+target
+dependency-reduced-pom.xml
+*/dependency-reduced-pom.xml
