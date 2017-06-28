@@ -9,7 +9,7 @@ import org.centauri.cloud.common.network.packets.Packet;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class PacketPlayerKick implements Packet {
+public class PacketPlayerMessage implements Packet {
 
 	@Getter private UUID uniqueId;
 	@Getter private String msg;
@@ -18,15 +18,13 @@ public class PacketPlayerKick implements Packet {
 	public void encode(ByteBuf buf) {
 		buf.writeLong(this.uniqueId.getMostSignificantBits());
 		buf.writeLong(this.uniqueId.getLeastSignificantBits());
-		if(msg != null)
-			this.writeString(msg, buf);
+		this.writeString(msg, buf);
 	}
 
 	@Override
 	public void decode(ByteBuf buf) {
 		this.uniqueId = new UUID(buf.readLong(), buf.readLong());
-		if(buf.readableBytes() > 0)
-			this.msg = this.readString(buf);
+		this.msg = this.readString(buf);
 	}
 
 }

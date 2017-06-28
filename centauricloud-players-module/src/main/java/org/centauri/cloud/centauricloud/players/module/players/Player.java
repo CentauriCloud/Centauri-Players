@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.centauri.cloud.cloud.server.BungeeServer;
 import org.centauri.cloud.cloud.server.SpigotServer;
 import org.centauri.cloud.players.common.packets.PacketPlayerKick;
+import org.centauri.cloud.players.common.packets.PacketPlayerMessage;
 
 @RequiredArgsConstructor
 public class Player {
@@ -22,6 +23,17 @@ public class Player {
 
 	@Getter private final ConcurrentHashMap<String, Object> extraData = new ConcurrentHashMap<>();
 
+	public void sendMessage(String msg) {
+		this.sendMessage(msg, true);
+	}
+
+	public void sendMessage(String msg, boolean proxy) {
+		if(proxy)
+			this.proxy.sendPacket(new PacketPlayerMessage(uniqueId, msg));
+		else
+			this.server.sendPacket(new PacketPlayerMessage(uniqueId, msg));
+	}
+
 	public void kick() {
 		this.kick("You were kicked: No reason defined\n"
 				+ "~ CentauriCloud");
@@ -33,8 +45,9 @@ public class Player {
 	
 	public void kick(String msg, boolean proxyKick) {
 		if(proxyKick)
-			this.proxy.sendPacket(new PacketPlayerKick(this.uniqueId));
+			this.proxy.sendPacket(new PacketPlayerKick(this.uniqueId, msg));
 		else
-			this.server.sendPacket(new PacketPlayerKick(this.uniqueId));
+			this.server.sendPacket(new PacketPlayerKick(this.uniqueId, msg));
 	}
+
 }
