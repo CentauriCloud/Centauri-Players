@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.centauri.cloud.centauricloud.players.module.CentauriCloudPlayers;
 import org.centauri.cloud.cloud.server.BungeeServer;
 import org.centauri.cloud.cloud.server.SpigotServer;
 import org.centauri.cloud.players.common.packets.PacketPlayerKick;
@@ -50,4 +51,7 @@ public class Player {
 			this.server.sendPacket(new PacketPlayerKick(this.uniqueId, msg));
 	}
 
+	public void disconnect() {
+		CentauriCloudPlayers.getInstance().getPlayerManager().remove(this);
+	}
 }
