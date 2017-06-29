@@ -32,7 +32,7 @@
 	
 	
 	<build>
-        <finalName>CentauriPlayersPlugin</finalName>
+        <finalName>CentauriCloudPlayersPlugin</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-shade-plugin</artifactId>

@@ -3,6 +3,7 @@ package org.centauri.cloud.players.plugin.spigot;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.centauri.cloud.players.common.packets.PacketManager;
 import org.centauri.cloud.players.plugin.spigot.listener.PlayerListener;
 import org.centauri.cloud.players.plugin.spigot.netty.NetworkHandler;
 import org.centauri.cloud.spigot.SpigotConnectorPlugin;
@@ -15,6 +16,7 @@ public class CentauriPlayersPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		instance = this;
+		PacketManager.register();
 
 		SpigotConnectorPlugin.getInstance().getPacketHandlers().add(new NetworkHandler());
 

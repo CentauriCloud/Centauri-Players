@@ -3,6 +3,7 @@ package org.centauri.cloud.centauricloud.players.module;
 import lombok.Getter;
 import org.centauri.cloud.centauricloud.players.module.players.PlayerManager;
 import org.centauri.cloud.cloud.module.AbstractModule;
+import org.centauri.cloud.players.common.packets.PacketManager;
 
 public class CentauriCloudPlayers extends AbstractModule {
 
@@ -13,6 +14,7 @@ public class CentauriCloudPlayers extends AbstractModule {
 	@Override
 	public void onEnable() {
 		instance = this;
+		PacketManager.register();
 	}
 
 	@Override
