@@ -22,14 +22,19 @@ public class PacketPlayerJoin implements Packet {
 		//If the sender is a spigot server,
 		//we only have to send the uuid,
 		//because the master already knows the name
-		if(name != null)
+		if(name != null) {
+			buf.writeByte(0x01);
 			this.writeString(name, buf);
+		} else {
+			buf.writeByte(0x00);
+		}
 	}
 
 	@Override
 	public void decode(ByteBuf buf) {
+		System.out.println("Decoding playerJoin");
 		this.uniqueId = new UUID(buf.readLong(), buf.readLong());
-		if(buf.readableBytes() > 0)
+		if(buf.readByte() != 0x00)
 			this.name = this.readString(buf);
 	}
 

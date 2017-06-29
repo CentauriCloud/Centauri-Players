@@ -18,14 +18,18 @@ public class PacketPlayerKick implements Packet {
 	public void encode(ByteBuf buf) {
 		buf.writeLong(this.uniqueId.getMostSignificantBits());
 		buf.writeLong(this.uniqueId.getLeastSignificantBits());
-		if(msg != null)
+		if(msg != null) {
+			buf.writeByte(0x01);
 			this.writeString(msg, buf);
+		} else {
+			buf.writeByte(0x00);
+		}
 	}
 
 	@Override
 	public void decode(ByteBuf buf) {
 		this.uniqueId = new UUID(buf.readLong(), buf.readLong());
-		if(buf.readableBytes() > 0)
+		if(buf.readByte() != 0x00)
 			this.msg = this.readString(buf);
 	}
 
