@@ -9,6 +9,9 @@
 	<modules>
 		<module>centauricloud-players-common</module>
 		<module>centauricloud-players-module</module>
+	 <module>centauricloud-players-plugin-spigot</module>
+	 <module>centauricloud-players-plugin-bungee</module>
+	 <module>centauricloud-players-plugin</module>
 	</modules>
 	
 	<dependencies>
