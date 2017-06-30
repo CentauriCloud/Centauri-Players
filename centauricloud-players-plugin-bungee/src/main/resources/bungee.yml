@@ -2,4 +2,4 @@ main: org.centauri.cloud.players.plugin.bungee.CentauriPlayersPlugin
 name: CentauriPlayers
 version: ${project.version}
 author: ${project.organization.name}
-depends: [CentauriSpigotConnector]
+depends: [CentauriBungeeConnector]
