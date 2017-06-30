@@ -14,7 +14,7 @@ public class CentauriPlayersPlugin extends Plugin {
 	@Override
 	public void onEnable() {
 		instance = this;
-		PacketManager.register();
+		PacketManager.register(this.getLogger());
 		
 		BungeeConnectorPlugin.getInstance().getPacketHandlers().add(new NetworkHandler());
 

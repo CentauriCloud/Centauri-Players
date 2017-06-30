@@ -16,7 +16,7 @@ public class CentauriPlayersPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		instance = this;
-		PacketManager.register();
+		PacketManager.register(this.getLogger());
 
 		SpigotConnectorPlugin.getInstance().getPacketHandlers().add(new NetworkHandler());
 

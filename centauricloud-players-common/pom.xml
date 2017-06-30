@@ -9,4 +9,13 @@
     <artifactId>centauricloud-players-common</artifactId>
     <packaging>jar</packaging>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.centauri.cloud</groupId>
+			<artifactId>centauricloud-connector</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
 </project>

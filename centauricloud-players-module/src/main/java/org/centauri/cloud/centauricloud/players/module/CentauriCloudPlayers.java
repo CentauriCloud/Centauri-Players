@@ -14,7 +14,7 @@ public class CentauriCloudPlayers extends AbstractModule {
 	@Override
 	public void onEnable() {
 		instance = this;
-		PacketManager.register();
+		PacketManager.register(null);
 	}
 
 	@Override
