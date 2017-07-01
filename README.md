@@ -1,1 +1,1 @@
-[![Build Status](https://jenkins.centauricloud.net/job/centauri-players/6/badge/icon)](https://jenkins.centauricloud.net/job/centauri-players/6/)
+[![Build Status](https://jenkins.centauricloud.net/job/centauri-players/badge/icon)](https://jenkins.centauricloud.net/job/centauri-players/)
