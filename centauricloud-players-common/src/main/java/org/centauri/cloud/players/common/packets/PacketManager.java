@@ -1,20 +1,16 @@
 package org.centauri.cloud.players.common.packets;
 
-import java.util.logging.Logger;
-import org.centauri.cloud.centauricloud.connector.netty.PacketLoader;
 import org.centauri.cloud.common.network.packets.Packet;
 
 public class PacketManager {
 
-	public static void register(Logger logger) {
+	public static void registerPackets() {
 		register(PacketPlayerDisconnect.class);
 		register(PacketPlayerJoin.class);
 		register(PacketPlayerKick.class);
 		register(PacketPlayerMessage.class);
-		if(logger != null)//dont read file if this is an module for the master
-			new PacketLoader().readFile(logger);
 	}
-	
+
 	private static void register(Class<? extends Packet> clazz) {
 		org.centauri.cloud.common.network.PacketManager.getInstance().register(clazz);
 	}

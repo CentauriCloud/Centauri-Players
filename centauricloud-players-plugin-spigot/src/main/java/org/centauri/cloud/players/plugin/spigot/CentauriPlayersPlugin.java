@@ -16,9 +16,10 @@ public class CentauriPlayersPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		instance = this;
-		PacketManager.register(this.getLogger());
 
-		SpigotConnectorPlugin.getInstance().getPacketHandlers().add(new NetworkHandler());
+		PacketManager.registerPackets();
+
+		SpigotConnectorPlugin.registerPlugin(this, new NetworkHandler());
 
 		Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
 		
