@@ -26,12 +26,29 @@ public class NetworkHandler {
 				return;
 			}
 
-			if (server instanceof SpigotServer)
-				CentauriCloudPlayers.getInstance().getPlayerManager().getPlayer(joinPacket.getUniqueId()).setServer((SpigotServer) server);
+			if (server instanceof SpigotServer) {
+				SpigotServer spigotServer = (SpigotServer) server;
+				CentauriCloudPlayers.getInstance().getPlayerManager().getPlayer(joinPacket.getUniqueId()).setServer(spigotServer);
+				spigotServer.setPlayers(spigotServer.getPlayers() + 1); // TODO: Atomic integer
+			}
 
 		} else if (packet instanceof PacketPlayerDisconnect) {
 			PacketPlayerDisconnect disconnectPacket = (PacketPlayerDisconnect) packet;
 			CentauriCloudPlayers.getInstance().getPlayerManager().remove(disconnectPacket.getUniqueId());
+			Player player = CentauriCloudPlayers.getInstance().getPlayerManager().getPlayer(disconnectPacket.getUniqueId());
+
+			if (server instanceof SpigotServer) {
+				SpigotServer spigotServer = (SpigotServer) server;
+				spigotServer.setPlayers(spigotServer.getPlayers() - 1); // TODO: Atomic integer
+			} else {
+
+				if (player.getServer() != null) {
+					SpigotServer spigotServer = (SpigotServer) player.getServer();
+					spigotServer.setPlayers(spigotServer.getPlayers() - 1);
+				}
+
+			}
+
 		}
 	}
 
